@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  .menu
+    .brand
+      h1.title.tcenter= title
+      p.subtitle.tcenter Toolkit for data-entry team.
+  .container
+    .tools.box
+      .toolbox
+        form(action="/search" method="GET")
+          h4 Search
+          select(name="searchLangCode")
+            each langCode in langCodeList
+              option(value=langCode.code)
+               = `${langCode.code} - ${langCode.country}`
+          textarea(name="searchEngContent" placeholder="Search..." required)
+          input(type="submit" value="Search")
+        form(action="/add" method="POST")
+          h4 Add New Content
+          select#langCodeSelect(name="langCode")
+            each langCode in langCodeList
+              option(value=langCode.code)
+                = `${langCode.code} - ${langCode.country}`
+          textarea(name="addEngContent" placeholder="EN Content" required)
+          textarea(name="addSubContent" placeholder="Sub Content" required)
+          input(type="submit" value="Add")
+            
+    .result.box
+      if searchResult
+        each item in searchResult
+          .card
+            small.result-eng= item.engContent
+            h4.result-lang= item.langContent
+      else
+        p.result-nothing Nothing Here !!
+      
