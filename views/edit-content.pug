@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .edit-container
+    h2 Edit Content
+    form(action=`/update-content/${data.engId}/${data.langId}` method="POST")
+      select(name="editLangCode")
+        each item in data.codes
+          option(value=item.code select=(item.code === langCode))
+            = `${item.code} - ${item.country}`
+      textarea(type="text" name="engEdit" placeholder="ENG Language")= data.eng.content
+      textarea(type="text" name="langEdit" placeholder="Sub Language")= data.lang.content
+      input(type="submit", value="SUBMIT")

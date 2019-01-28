@@ -8,6 +8,7 @@
   "scripts": {
     "start": "nodemon ./bin/www"
   },
+  "template": "node",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",

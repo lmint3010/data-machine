@@ -37,10 +37,6 @@ h1, h2, h3, h4, h5, .title {
   margin-right: 1rem;
 }
 
-.result {
-  flex-grow: 1;
-}
-
 .box {
   background-color: white;
   padding: 2rem 3rem;
@@ -123,3 +119,48 @@ button:active, input[type=submit]:active {
   transform: scale(.9);
 }
 
+.brand {
+  text-decoration: none;
+}
+
+.result-eng {
+  font-weight: 500;
+}
+
+.result-lang {
+  margin: .5rem 0;
+}
+
+.result {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 360px);
+  grid-template-rows: repeat(auto-fit, 180px);
+}
+
+.result-card {
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+  overflow: auto;
+}
+
+.result-card a {
+  font-weight: 300;
+  font-size: 13px;
+  color: #00bec2;
+  text-decoration: none;
+}
+
+.form-link {
+  font-size: 13px;
+  font-weight: 400;
+  color: #00bec2;
+  text-transform: capitalize;
+  letter-spacing: .5px;
+  text-align: right;
+}
+
+.edit-container {
+  width: 50%;
+  margin: 0 auto;
+}
