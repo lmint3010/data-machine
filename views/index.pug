@@ -32,7 +32,7 @@ block content
           input(type="text", name="langCode" placeholder="Language Code")
           input(type="text", name="country" placeholder="Country")
           input(type="submit", value="Add New Language")
-          a.form-link(href="/country-code" target="_blank") View all language code
+          a.form-link(href="/country-code") View all language code
             
     .result.box
       if searchResult
@@ -42,6 +42,7 @@ block content
             h4.result-lang= item.langContent
             .result-options
               a(href=`edit-content/${item.engId}/${item.langId}/${item.langCode}`) Edit
+              a(href=`delete-content/${item.engId}/${item.langId}/${item.uid}`) Delete
       else
         p.result-nothing Nothing Here !!
       

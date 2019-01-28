@@ -9,23 +9,26 @@ const onAdd = async (req, res, next) => {
   const langDocs = await langModel.find({ code: langCode });
 
   const engChecker = engDocs.find(e => compareStr(e.content, addEngContent));
-  const langChecker = langDocs.find(e => compareStr(e.content, addSubContent));
 
-  if(engChecker && langChecker) res.redirect('/');
-  
-  else if (engChecker && !langChecker) {
-    const newLangContent = new langModel({
-      uid: engChecker.uid,
-      code: langCode,
-      content: addSubContent
-    });
+  if(engChecker) {
+    const langChecker = langDocs.find(e => e.uid === engChecker.uid);
 
-    newLangContent.save()
-      .then(() => res.redirect('/'));
-  } 
-  
+    if(langChecker) res.redirect('/')
+
+    else {
+      const newContent = new langModel({
+        uid: engChecker.uid,
+        code: langCode,
+        content: addSubContent
+      });
+      newContent.save()
+        .then(() => res.redirect('/'));
+    }
+  }
+
   else {
     const uid = uniqid();
+
     const newEngContent = new engModel({
       uid: uid,
       content: addEngContent

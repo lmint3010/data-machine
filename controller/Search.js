@@ -16,6 +16,7 @@ const onSearch = async (req, res, next) => {
     if (!lang) return;
     
     return {
+      uid: uid,
       engId: e._id,
       langId: lang._id,
       langCode: lang.code,

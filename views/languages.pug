@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h2.tcenter All Languages
+  a.cancel-btn(href="/") Back to home
+  .show-all-langs
+    each item in docs
+      .langbox
+        span= `${item.code} - ${item.country}`
+        a.del-lang(href=`delete-lang/${item._id}`) Delete

@@ -1,7 +1,7 @@
 const { langCodeModel, langModel, engModel } = require('../model/indexModel');
 
 exports.onEditContent = async (req, res) => {
-  const { engId, langId, langCode } = req.params;
+  const { engId, langId, langCode } = req.params; 
 
   const result = {
     langCode: langCode,
@@ -12,20 +12,16 @@ exports.onEditContent = async (req, res) => {
     lang: await langModel.findById(langId)
   };
 
-  res.render('edit-content', { data: result });
+  res.render('edit-content', result);
 };
 
+// Handle edit content
 exports.handleEditContent = async (req, res) => {
   const { editLangCode, langEdit, engEdit } = req.body;
   const { engId, langId } = req.params;
 
-  console.log(`
-    EngId: ${engId}
-    LangId: ${langId}
-    eng-content: ${engEdit}
-    lang-content: ${langEdit}
-    edit-lang-code: ${editLangCode}
-  `);
-
-  res.end();
+  await engModel.findByIdAndUpdate(engId, { content: engEdit }) &&  
+  await langModel.findByIdAndUpdate(langId, { content: langEdit, code: editLangCode })
+   ? res.redirect('/')
+   : console.log('Update Error !');
 }
