@@ -5,8 +5,9 @@
   "engines": {
     "node": "10.14.2"
   },
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
